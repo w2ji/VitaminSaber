@@ -35,7 +35,7 @@ import static javax.lang.model.element.Modifier.STATIC;
 import static javax.tools.Diagnostic.Kind.ERROR;
 
 public class InjectResourceProcessor extends AbstractProcessor{
-    public static final String SUFFIX = "$$ExtraInjector";
+    public static final String SUFFIX = "$$ResourceInjector";
 
     private Elements elementUtils;
     private Types typeUtils;
@@ -81,7 +81,7 @@ public class InjectResourceProcessor extends AbstractProcessor{
                 new LinkedHashMap<TypeElement, ResourceInjector>();
         Set<TypeMirror> erasedTargetTypes = new LinkedHashSet<TypeMirror>();
 
-        // Process each @InjectExtra elements.
+        // Process each @InjectResource elements.
         for (Element element : env.getElementsAnnotatedWith(InjectResource.class)) {
             try {
                 parseInjectExtra(element, targetClassMap, erasedTargetTypes);
@@ -89,7 +89,7 @@ public class InjectResourceProcessor extends AbstractProcessor{
                 StringWriter stackTrace = new StringWriter();
                 e.printStackTrace(new PrintWriter(stackTrace));
 
-                error(element, "Unable to generate extra injector for @InjectExtra.\n\n%s",
+                error(element, "Unable to generate extra injector for @InjectResource.\n\n%s",
                         stackTrace.toString());
             }
         }

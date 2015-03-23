@@ -28,29 +28,24 @@ public class VitaminSaber {
     }
 
     public static void inject(Activity target) {
-        inject(target, target, Finder.ACTIVITY);
+        inject(target, target, ResourceFinder.ACTIVITY);
     }
 
     public static void inject(Fragment target) {
-        inject(target, target, Finder.FRAGMENT);
+        inject(target, target, ResourceFinder.FRAGMENT);
     }
 
     public static void inject(Object target, Activity source) {
-        inject(target, source, Finder.ACTIVITY);
+        inject(target, source, ResourceFinder.ACTIVITY);
     }
 
-
-    public static void inject(Object target, Bundle source) {
-        inject(target, source, Finder.BUNDLE);
-    }
-
-    static void inject(Object target, Object source, Finder finder) {
+    static void inject(Object target, Object source, ResourceFinder resourceFinder) {
         Class<?> targetClass = target.getClass();
         try {
             if (debug) Log.d(TAG, "Looking up extra injector for " + targetClass.getName());
             Method inject = findInjectorForClass(targetClass);
             if (inject != null) {
-                inject.invoke(null, finder, target, source);
+                inject.invoke(null, resourceFinder, target, source);
             }
         } catch (RuntimeException e) {
             throw e;
@@ -72,7 +67,7 @@ public class VitaminSaber {
         }
         try {
             Class<?> injector = Class.forName(clsName + InjectResourceProcessor.SUFFIX);
-            inject = injector.getMethod("inject", Finder.class, cls, Object.class);
+            inject = injector.getMethod("inject", ResourceFinder.class, cls, Object.class);
             if (debug) Log.d(TAG, "HIT: Class loaded injection class.");
         } catch (ClassNotFoundException e) {
             if (debug) Log.d(TAG, "Not found. Trying superclass " + cls.getSuperclass().getName());
@@ -95,28 +90,6 @@ public class VitaminSaber {
      * by generated code.
      * If any of the means to get a bundle are null, this will simply return a null.
      */
-    public enum Finder {
-        ACTIVITY {
-            @Override public Object getExtra(Object source, String key) {
-                Intent intent = ((Activity) source).getIntent();
-                return intent == null ? null : Finder.BUNDLE.getExtra(intent.getExtras(), key);
-            }
-        },
-        FRAGMENT {
-            @Override public Object getExtra(Object source, String key) {
-                Bundle extras = ((Fragment) source).getArguments();
-                return Finder.BUNDLE.getExtra(extras, key);
-            }
-        },
-        BUNDLE {
-            @Override public Object getExtra(Object source, String key) {
-                return source == null ? null : ((Bundle) source).get(key);
-            }
-        };
-
-        public abstract Object getExtra(Object source, String key);
-    }
-
     public enum ResourceFinder {
         ACTIVITY {
             @Override public Object getResource(Object source, int resourceId) {

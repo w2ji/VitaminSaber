@@ -101,9 +101,9 @@ final class ResourceInjector {
 
     String brewJava() {
         StringBuilder builder = new StringBuilder();
-        builder.append("// Generated code from Dart. Do not modify!\n");
+        builder.append("// Generated code from VitaminSaber. Do not modify!\n");
         builder.append("package ").append(classPackage).append(";\n\n");
-        builder.append("import com.f2prateek.dart.Dart.Finder;\n\n");
+        builder.append("import com.w2ji.vitaminsaber.VitaminSaber.ResourceFinder;\n\n");
         builder.append("public class ").append(className).append(" {\n");
         emitInject(builder);
         builder.append("}\n");
@@ -132,14 +132,14 @@ final class ResourceInjector {
     }
 
     private void emitExtraInjection(StringBuilder builder, ResourceInjection injection) {
-        builder.append("    object = finder.getExtra(source, \"")
+        builder.append("    object = finder.getResource(source, \"")
                 .append(injection.getKey())
                 .append("\");\n");
 
         List<FieldBinding> requiredBindings = injection.getRequiredBindings();
         if (!requiredBindings.isEmpty()) {
             builder.append("    if (object == null) {\n")
-                    .append("      throw new IllegalStateException(\"Required extra with key '")
+                    .append("      throw new IllegalStateException(\"Required resource with key '")
                     .append(injection.getKey())
                     .append("' for ");
             emitHumanDescription(builder, requiredBindings);
