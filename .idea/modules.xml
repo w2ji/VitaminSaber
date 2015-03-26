@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/vitaminsaber.iml" filepath="$PROJECT_DIR$/vitaminsaber.iml" />
-      <module fileurl="file://$PROJECT_DIR$/vitaminsaber/vitaminsaber (1) (com.w2ji.vitaminsaber).iml" filepath="$PROJECT_DIR$/vitaminsaber/vitaminsaber (1) (com.w2ji.vitaminsaber).iml" />
+      <module fileurl="file://$PROJECT_DIR$/vitaminsaber/vitaminsaber.iml" filepath="$PROJECT_DIR$/vitaminsaber/vitaminsaber.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vitaminsaber-parent.iml" filepath="$PROJECT_DIR$/vitaminsaber-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vitaminsaber-sample/vitaminsaver-sample.iml" filepath="$PROJECT_DIR$/vitaminsaber-sample/vitaminsaver-sample.iml" />
     </modules>
   </component>
 </project>

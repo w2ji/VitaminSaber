@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 final class ResourceInjector {
-    private final Map<String, ResourceInjection> injectionMap =
-            new LinkedHashMap<String, ResourceInjection>();
+    private final Map<Integer, ResourceInjection> injectionMap =
+            new LinkedHashMap<Integer, ResourceInjection>();
     private final String classPackage;
     private final String className;
     private final String targetClass;
@@ -78,7 +78,7 @@ final class ResourceInjector {
         }
     }
 
-    void addField(String key, String name, TypeMirror type) {
+    void addField(int key, String name, TypeMirror type) {
         getOrCreateExtraBinding(key).addFieldBinding(new FieldBinding(name, type));
     }
 
@@ -86,7 +86,7 @@ final class ResourceInjector {
         this.parentInjector = parentInjector;
     }
 
-    private ResourceInjection getOrCreateExtraBinding(String key) {
+    private ResourceInjection getOrCreateExtraBinding(int key) {
         ResourceInjection extraInjection = injectionMap.get(key);
         if (extraInjection == null) {
             extraInjection = new ResourceInjection(key);
@@ -111,7 +111,7 @@ final class ResourceInjector {
     }
 
     private void emitInject(StringBuilder builder) {
-        builder.append("  public static void inject(Finder finder, final ")
+        builder.append("  public static void inject(ResourceFinder finder, final ")
                 .append(targetClass)
                 .append(" target, Object source) {\n");
 
@@ -132,9 +132,9 @@ final class ResourceInjector {
     }
 
     private void emitExtraInjection(StringBuilder builder, ResourceInjection injection) {
-        builder.append("    object = finder.getResource(source, \"")
+        builder.append("    object = finder.getResource(source, ")
                 .append(injection.getKey())
-                .append("\");\n");
+                .append(");\n");
 
         List<FieldBinding> requiredBindings = injection.getRequiredBindings();
         if (!requiredBindings.isEmpty()) {

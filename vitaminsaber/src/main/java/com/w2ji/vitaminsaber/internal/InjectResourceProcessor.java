@@ -152,12 +152,12 @@ public class InjectResourceProcessor extends AbstractProcessor{
 
         // Assemble information on the injection point.
         String name = element.getSimpleName().toString();
-        String key = element.getAnnotation(InjectResource.class).value();
+        int key = element.getAnnotation(InjectResource.class).value();
         TypeMirror type = element.asType();
         boolean parcel = isAnnotated(typeUtils.asElement(element.asType()), "org.parceler.Parcel");
 
         ResourceInjector extraInjector = getOrCreateTargetClass(targetClassMap, enclosingElement);
-        extraInjector.addField(isNullOrEmpty(key) ? name : key, name, type);
+        extraInjector.addField(key, name, type);
 
         // Add the type-erased version to the valid injection targets set.
         TypeMirror erasedTargetType = typeUtils.erasure(enclosingElement.asType());

@@ -3,14 +3,14 @@ package com.w2ji.vitaminsaber.internal;
 import java.util.*;
 
 final class ResourceInjection {
-    private final String key;
+    private final int key;
     private final Set<FieldBinding> fieldBindings = new LinkedHashSet<FieldBinding>();
 
-    ResourceInjection(String key) {
+    ResourceInjection(int key) {
         this.key = key;
     }
 
-    public String getKey() {
+    public int getKey() {
         return key;
     }
 

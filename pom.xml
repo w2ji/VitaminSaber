@@ -18,10 +18,12 @@
 
     <name>Vitamin Saber (Parent)</name>
     <description>Resource "injection" for Android.</description>
+    <url>https://github.com/w2ji/VitaminSaber</url>
     <inceptionYear>2015</inceptionYear>
 
     <modules>
         <module>vitaminsaber</module>
+        <module>vitaminsaber-sample</module>
     </modules>
 
     <properties>
@@ -37,17 +39,17 @@
         <compile-test.version>0.4</compile-test.version>
     </properties>
 
-    <scm>
-        <url>http://github.com/f2prateek/dart/</url>
-        <connection>scm:git:git://github.com/f2prateek/dart.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/f2prateek/dart.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
+    <!--<scm>-->
+        <!--<url>http://github.com/f2prateek/dart/</url>-->
+        <!--<connection>scm:git:git://github.com/f2prateek/dart.git</connection>-->
+        <!--<developerConnection>scm:git:ssh://git@github.com/f2prateek/dart.git</developerConnection>-->
+        <!--<tag>HEAD</tag>-->
+    <!--</scm>-->
 
-    <issueManagement>
-        <system>GitHub Issues</system>
-        <url>http://github.com/f2prateek/dart/issues</url>
-    </issueManagement>
+    <!--<issueManagement>-->
+        <!--<system>GitHub Issues</system>-->
+        <!--<url>http://github.com/f2prateek/dart/issues</url>-->
+    <!--</issueManagement>-->
 
     <licenses>
         <license>

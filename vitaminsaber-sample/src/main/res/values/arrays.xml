@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="animals">
+        <item>Dog</item>
+        <item>Cat</item>
+        <item>Rat</item>
+    </string-array>
+    <integer-array name="index">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </integer-array>
+</resources>
