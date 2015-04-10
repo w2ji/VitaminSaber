@@ -19,6 +19,7 @@ target/
 tmp/
 gen-external-apklibs/
 vitaminsaber-sample/target/
+vitaminsaber/target
 classes/
 .idea/
 .idea/libraries
