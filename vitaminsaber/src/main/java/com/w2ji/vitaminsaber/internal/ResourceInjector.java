@@ -146,12 +146,6 @@ final class ResourceInjector {
             builder.append(" was not found. If this extra is optional add '@Optional' annotation.\");\n")
                     .append("    }\n");
             emitFieldBindings(builder, injection);
-        } else {
-            // an optional extra, wrap it in a check to keep original value, if any
-            builder.append("    if (object != null) {\n");
-            builder.append("  ");
-            emitFieldBindings(builder, injection);
-            builder.append("    }\n");
         }
     }
 

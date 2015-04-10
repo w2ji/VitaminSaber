@@ -106,6 +106,7 @@ public class VitaminSaber {
 
         public Object findResourceType(Resources resources, int resourceId){
             String resourceTypeName = resources.getResourceTypeName(resourceId);
+            Log.d(TAG, "resourceTypes : " + resourceTypeName);
             ResourceTypes resourceTypes = ResourceTypes.valueOf(resourceTypeName);
             switch (resourceTypes){
                 case anim:
@@ -113,10 +114,17 @@ public class VitaminSaber {
                 case animator:
                     return resources.getAnimation(resourceId);
                 case array:
-                    // TODO determine type of array
+                    // TODO hack for now and fix it in the next release
+                    try {
+                        String [] strings = resources.getStringArray(resourceId);
+                        if (strings[0] != null){
+                            return strings;
+                        }
+                    } catch (Exception ex){
+                    }
                     return resources.getIntArray(resourceId);
                 case attr:
-                    // TODO WHAT IS THIS?
+                    // TODO not supported?
                     return null;
                 case bool:
                     return resources.getBoolean(resourceId);
@@ -127,27 +135,29 @@ public class VitaminSaber {
                 case drawable:
                     return resources.getDrawable(resourceId);
                 case fraction:
-                    // TODO HMMM?
+                    // TODO not supported?
                     return null;
                 case interger:
                     return resources.getInteger(resourceId);
                 case interpolator:
-                    // TODO WHAT?
+                    // TODO not supported?
                     return null;
                 case layout:
                     return resources.getLayout(resourceId);
                 case menu:
+                    // TODO not supported?
                     return null;
                 case mipmap:
                     return null;
                 case plurals:
-                    // TODO cant inject this
+                    // TODO not supported?
                     return null;
                 case raw:
                     return null;
                 case string:
                     return resources.getString(resourceId);
                 case style:
+                    // TODO not supported?
                     return null;
                 case xml:
                     return resources.getXml(resourceId);
