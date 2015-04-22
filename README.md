@@ -32,11 +32,6 @@ If Proguard is enabled be sure to add these rules on your configuration:
 -keepnames class * { @com.w2ji.vitaminsaber.InjectResource *;}
 ```
 
-Download
---------
-Gradle:
-compile 'com.f2prateek.dart:dart:(insert latest version)'
-
 
 License
 -------
