@@ -113,11 +113,11 @@ final class ResourceInjector {
     private void emitInject(StringBuilder builder) {
         builder.append("  public static void inject(ResourceFinder finder, final ")
                 .append(targetClass)
-                .append(" target, Object source) {\n");
+                .append(" target, Object resource) {\n");
 
         // Emit a call to the superclass injector, if any.
         if (parentInjector != null) {
-            builder.append("    ").append(parentInjector).append(".inject(finder, target, source);\n\n");
+            builder.append("    ").append(parentInjector).append(".inject(finder, target, resource);\n\n");
         }
 
         // Local variable in which all extras will be temporarily stored.
@@ -125,14 +125,14 @@ final class ResourceInjector {
 
         // Loop over each extras injection and emit it.
         for (ResourceInjection injection : injectionMap.values()) {
-            emitExtraInjection(builder, injection);
+            emitResourceInjection(builder, injection);
         }
 
         builder.append("  }\n");
     }
 
-    private void emitExtraInjection(StringBuilder builder, ResourceInjection injection) {
-        builder.append("    object = finder.getResource(source, ")
+    private void emitResourceInjection(StringBuilder builder, ResourceInjection injection) {
+        builder.append("    object = finder.getResource(resource, ")
                 .append(injection.getKey())
                 .append(");\n");
 

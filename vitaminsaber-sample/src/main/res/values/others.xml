@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="hello">10</integer>
+    <integer name="ten">10</integer>
     <item name="id" type="id"/>
     <bool name="bool">true</bool>
 </resources>

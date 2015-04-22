@@ -19,6 +19,7 @@
 package com.w2ji.vitaminsaber.example;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
 import butterknife.ButterKnife;
@@ -31,7 +32,8 @@ public class SampleActivity extends Activity {
     @InjectView(R.id.string) TextView testString;
     @InjectResource(R.string.app_name) String appName;
     @InjectResource(R.dimen.spacing_tiny) float tinySpacing;
-
+    @InjectResource(R.integer.ten) int ten;
+    @InjectResource(R.color.green) int color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +41,10 @@ public class SampleActivity extends Activity {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
         VitaminSaber.inject(this);
-        testString.setText(appName + "\n" + tinySpacing);
-        getResources().getStringArray(R.array.index);
+        testString.setTextColor(color);
 
-        testString.setText(appName + "\n" + tinySpacing);
+        SampleUtil util = new SampleUtil(this);
 
+        testString.setText(appName + "\n" + tinySpacing + "\n" + ten + "\n" + util.appName);
     }
 }

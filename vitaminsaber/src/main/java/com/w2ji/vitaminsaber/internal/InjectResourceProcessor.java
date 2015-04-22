@@ -13,7 +13,6 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
-import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.RoundEnvironment;
@@ -84,7 +83,7 @@ public class InjectResourceProcessor extends AbstractProcessor{
         // Process each @InjectResource elements.
         for (Element element : env.getElementsAnnotatedWith(InjectResource.class)) {
             try {
-                parseInjectExtra(element, targetClassMap, erasedTargetTypes);
+                parseInjectResource(element, targetClassMap, erasedTargetTypes);
             } catch (Exception e) {
                 StringWriter stackTrace = new StringWriter();
                 e.printStackTrace(new PrintWriter(stackTrace));
@@ -138,8 +137,8 @@ public class InjectResourceProcessor extends AbstractProcessor{
         return hasError;
     }
 
-    private void parseInjectExtra(Element element, Map<TypeElement, ResourceInjector> targetClassMap,
-                                  Set<TypeMirror> erasedTargetTypes) {
+    private void parseInjectResource(Element element, Map<TypeElement, ResourceInjector> targetClassMap,
+                                     Set<TypeMirror> erasedTargetTypes) {
         boolean hasError = false;
         TypeElement enclosingElement = (TypeElement) element.getEnclosingElement();
 

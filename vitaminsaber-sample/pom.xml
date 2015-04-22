@@ -11,7 +11,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>vitaminsaver-sample</artifactId>
+    <artifactId>vitaminsaber-sample</artifactId>
     <name>Vitaminsaber sample</name>
     <packaging>apk</packaging>
 
@@ -19,7 +19,7 @@
         <dependency>
             <groupId>com.w2ji.vitaminsaber</groupId>
             <artifactId>vitaminsaber</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>

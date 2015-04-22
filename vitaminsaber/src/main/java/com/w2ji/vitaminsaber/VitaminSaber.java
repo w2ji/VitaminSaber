@@ -2,6 +2,7 @@ package com.w2ji.vitaminsaber;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -28,29 +29,29 @@ public class VitaminSaber {
     }
 
     public static void inject(Activity target) {
-        inject(target, target, ResourceFinder.ACTIVITY);
+        inject(target, target, ResourceFinder.CONTEXT);
     }
 
     public static void inject(Fragment target) {
         inject(target, target, ResourceFinder.FRAGMENT);
     }
 
-    public static void inject(Object target, Activity source) {
-        inject(target, source, ResourceFinder.ACTIVITY);
+    public static void inject(Context resource, Object target) {
+        inject(target, resource, ResourceFinder.CONTEXT);
     }
 
-    static void inject(Object target, Object source, ResourceFinder resourceFinder) {
+    static void inject(Object target, Object resource, ResourceFinder resourceFinder) {
         Class<?> targetClass = target.getClass();
         try {
             if (debug) Log.d(TAG, "Looking up extra injector for " + targetClass.getName());
             Method inject = findInjectorForClass(targetClass);
             if (inject != null) {
-                inject.invoke(null, resourceFinder, target, source);
+                inject.invoke(null, resourceFinder, target, resource);
             }
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {
-            throw new UnableToInjectException("Unable to inject extras for " + target, e);
+            throw new UnableToInjectException("Unable to inject resource for " + target, e);
         }
     }
 
@@ -91,15 +92,15 @@ public class VitaminSaber {
      * If any of the means to get a bundle are null, this will simply return a null.
      */
     public enum ResourceFinder {
-        ACTIVITY {
-            @Override public Object getResource(Object source, int resourceId) {
-                Activity activity = (Activity) source;
+        CONTEXT {
+            @Override public Object getResource(Object target, int resourceId) {
+                Context activity = (Context) target ;
                 return activity == null ? null : findResourceType(activity.getResources(), resourceId);
             }
         },
         FRAGMENT {
-            @Override public Object getResource(Object source, int resourceId) {
-                Fragment fragment = (Fragment) source;
+            @Override public Object getResource(Object target, int resourceId) {
+                Fragment fragment = (Fragment) target;
                 return fragment == null ? null : findResourceType(fragment.getResources(), resourceId);
             }
         };
@@ -137,7 +138,7 @@ public class VitaminSaber {
                 case fraction:
                     // TODO not supported?
                     return null;
-                case interger:
+                case integer:
                     return resources.getInteger(resourceId);
                 case interpolator:
                     // TODO not supported?
@@ -176,7 +177,7 @@ public class VitaminSaber {
             dimen,
             drawable,
             fraction,
-            interger,
+            integer,
             interpolator,
             layout,
             menu,
