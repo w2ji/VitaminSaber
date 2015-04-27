@@ -30,46 +30,8 @@
             android:gravity="center"
             style="@android:style/TextAppearance.Large"
             />
-    <TextView
-            android:id="@+id/string_extra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            style="@android:style/TextAppearance.Large"
-            />
-    <TextView
-            android:id="@+id/int_extra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            style="@android:style/TextAppearance.Large"
-            />
-    <TextView
-            android:id="@+id/parcelable_extra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            style="@android:style/TextAppearance.Large"
-            />
-    <TextView
-            android:id="@+id/optional_extra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            style="@android:style/TextAppearance.Large"
-            />
-    <TextView
-            android:id="@+id/parcel_extra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            style="@android:style/TextAppearance.Large"
-            />
-    <TextView
-            android:id="@+id/default_extra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            style="@android:style/TextAppearance.Large"
-            />
+   <ImageView
+           android:id="@+id/image"
+           android:layout_gravity="center"
+           android:layout_width="50dp" android:layout_height="50dp"/>
 </LinearLayout>

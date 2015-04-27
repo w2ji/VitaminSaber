@@ -8,11 +8,12 @@
     <parent>
         <groupId>com.w2ji.vitaminsaber</groupId>
         <artifactId>vitaminsaber-parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
 
     <artifactId>vitaminsaber-sample</artifactId>
     <name>Vitaminsaber sample</name>
+    <version>1.0</version>
     <packaging>apk</packaging>
 
     <dependencies>

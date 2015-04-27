@@ -8,7 +8,7 @@
     <parent>
         <groupId>com.w2ji.vitaminsaber</groupId>
         <artifactId>vitaminsaber-parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
 
     <artifactId>vitaminsaber</artifactId>
