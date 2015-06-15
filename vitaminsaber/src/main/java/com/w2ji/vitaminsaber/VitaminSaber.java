@@ -43,7 +43,7 @@ public class VitaminSaber {
     static void inject(Object target, Object resource, ResourceFinder resourceFinder) {
         Class<?> targetClass = target.getClass();
         try {
-            if (debug) Log.d(TAG, "Looking up extra injector for " + targetClass.getName());
+            if (debug) Log.d(TAG, "Looking up resource injector for " + targetClass.getName());
             Method inject = findInjectorForClass(targetClass);
             if (inject != null) {
                 inject.invoke(null, resourceFinder, target, resource);
@@ -107,7 +107,7 @@ public class VitaminSaber {
 
         public Object findResourceType(Resources resources, int resourceId){
             String resourceTypeName = resources.getResourceTypeName(resourceId);
-            Log.d(TAG, "resourceTypes : " + resourceTypeName);
+            if (debug) Log.d(TAG, "resourceTypes : " + resourceTypeName);
             ResourceTypes resourceTypes = ResourceTypes.valueOf(resourceTypeName);
             switch (resourceTypes){
                 case anim:
@@ -121,6 +121,8 @@ public class VitaminSaber {
                         if (strings[0] != null){
                             return strings;
                         }
+                        int [] ints = resources.getIntArray(resourceId);
+                        return ints;
                     } catch (Exception ex){
                     }
                     return resources.getIntArray(resourceId);

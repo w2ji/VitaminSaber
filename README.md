@@ -1,9 +1,23 @@
 Vitamin Saber
 ============
 
-This library provides resource injection for Android (@InjectResource(resId)). The code is a slight modification of the
-Extra dependency library Dart (https://github.com/f2prateek/dart).
+This library provides resource injection for Android (@InjectResource(resId)).
+The code is based on the Extra dependency library Dart (https://github.com/f2prateek/dart).
 
+Dependencies
+------
+```java
+class ExampleActivity extends Activity {
+  @InjectResource(R.string.hello) String str1;
+  @InjectResource(R.color.red) int color;
+
+  @Override public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.simple_activity);
+    VitaminSaber.inject(this);
+  }
+}
+```
 
 Usages
 ------
@@ -20,6 +34,13 @@ class ExampleActivity extends Activity {
 }
 ```
 
+Gradle
+-----
+This project is uploaded to maven central
+```
+compile "com.w2ji.vitaminsaber:vitaminsaber:1.0.1"
+```
+-----
 
 Proguard
 --------

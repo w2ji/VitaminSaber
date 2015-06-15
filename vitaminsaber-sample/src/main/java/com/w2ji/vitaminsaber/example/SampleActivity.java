@@ -38,7 +38,7 @@ public class SampleActivity extends Activity {
     @InjectResource(R.integer.ten) int ten;
     @InjectResource(R.color.green) int color;
     @InjectResource(R.drawable.example_drawable) Drawable exampleDrawable;
-
+    @InjectResource(R.array.index) int[] arrays;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
