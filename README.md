@@ -1,8 +1,11 @@
-Vitamin Saber
-============
+Vitamin Saber [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.w2ji.vitaminsaber/vitaminsaber/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.w2ji.vitaminsaber/vitaminsaber)
 
-This library provides resource injection for Android (@InjectResource(resId)).
-The code is based on the Extra dependency library Dart (https://github.com/f2prateek/dart).
+Vitamin Saber provides resource injection for Android (@InjectResource(resId)).
+It is annotation processor based and will provide all the speed you need on Android by avoiding reflection.
+
+The code was originally a fork of the
+Extra dependency library [Dart](https://github.com/f2prateek/dart).
+
 
 Dependencies
 ------
@@ -76,6 +79,16 @@ If Proguard is enabled be sure to add these rules on your configuration:
 -keep class **$$ResourceInjector { *; }
 -keepnames class * { @com.w2ji.vitaminsaber.InjectResource *;}
 ```
+
+### Credits
+
+Vitamin Saber has been possible thanks to [Groupon](http://groupon.com) ! 
+
+<img src="https://pbs.twimg.com/profile_images/428288841082871808/Q114lCq3_400x400.png" alt="Groupon logo" width= "200px" height= "200px"/>
+
+And, yes, [we are hiring Android coders](https://jobs.groupon.com/careers/engineering/).
+
+Vitamin Saber is part of [our open source effort](https://github.com/groupon). 
 
 
 License
