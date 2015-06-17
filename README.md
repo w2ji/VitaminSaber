@@ -34,6 +34,30 @@ class ExampleActivity extends Activity {
 }
 ```
 
+Supported Resource Types
+-----
+```
+    anim,
+    animator,
+    array,
+    attr, <- Not supported
+    bool,
+    color,
+    dimen,
+    drawable,
+    fraction, <- Not supported
+    integer,
+    interpolator, <- Not supported
+    layout,
+    menu, <- Not supported
+    mipmap, <- Not supported
+    plurals, <- Not supported
+    raw, <- Not supported
+    string,
+    style, <- Not supported
+    xml
+```
+
 Gradle
 -----
 This project is uploaded to maven central

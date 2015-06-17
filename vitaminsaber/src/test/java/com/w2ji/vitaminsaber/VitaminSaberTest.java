@@ -26,7 +26,7 @@ public class VitaminSaberTest {
         }
 
         Example example = new Example();
-        VitaminSaber.inject(example, null, null);
+        VitaminSaber.inject(null, example, null);
         assertThat(VitaminSaber.INJECTORS).contains(entry(Example.class, VitaminSaber.NO_OP));
     }
 
@@ -36,6 +36,5 @@ public class VitaminSaberTest {
         VitaminSaber.inject(new Activity(), new Object());
         assertThat(VitaminSaber.INJECTORS).isEmpty();
     }
-
 
 }

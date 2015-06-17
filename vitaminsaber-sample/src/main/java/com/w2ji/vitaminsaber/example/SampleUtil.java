@@ -6,7 +6,7 @@ import com.w2ji.vitaminsaber.VitaminSaber;
 
 
 public class SampleUtil {
-    @InjectResource (R.string.app_name) public String appName;
+    @InjectResource (R.string.string) public String appName;
 
     public SampleUtil (Context context){
         VitaminSaber.inject(context, this);

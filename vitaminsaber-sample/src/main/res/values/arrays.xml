@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="animals">
+    <string-array name="string_array">
         <item>Dog</item>
         <item>Cat</item>
         <item>Rat</item>
     </string-array>
-    <integer-array name="index">
+    <integer-array name="int_array">
         <item>0</item>
         <item>1</item>
         <item>2</item>

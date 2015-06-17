@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+
 final class ResourceInjector {
     private final Map<Integer, ResourceInjection> injectionMap =
             new LinkedHashMap<Integer, ResourceInjection>();
@@ -104,13 +105,14 @@ final class ResourceInjector {
         builder.append("// Generated code from VitaminSaber. Do not modify!\n");
         builder.append("package ").append(classPackage).append(";\n\n");
         builder.append("import com.w2ji.vitaminsaber.VitaminSaber.ResourceFinder;\n\n");
+
         builder.append("public class ").append(className).append(" {\n");
         emitInject(builder);
         builder.append("}\n");
         return builder.toString();
     }
 
-    private void emitInject(StringBuilder builder) {
+    void emitInject(StringBuilder builder) {
         builder.append("  public static void inject(ResourceFinder finder, final ")
                 .append(targetClass)
                 .append(" target, Object resource) {\n");
@@ -131,10 +133,19 @@ final class ResourceInjector {
         builder.append("  }\n");
     }
 
-    private void emitResourceInjection(StringBuilder builder, ResourceInjection injection) {
+    void emitResourceInjection(StringBuilder builder, ResourceInjection injection) {
+        final FieldBinding binding = injection.getFirstBinding();
+
         builder.append("    object = finder.getResource(resource, ")
-                .append(injection.getKey())
-                .append(");\n");
+                .append(injection.getKey());
+
+        if (binding != null) {
+            builder.append(", \"")
+                    .append(getType(binding.getType()))
+                    .append("\"");
+        }
+
+        builder.append(");\n");
 
         List<FieldBinding> requiredBindings = injection.getRequiredBindings();
         if (!requiredBindings.isEmpty()) {
@@ -143,13 +154,13 @@ final class ResourceInjector {
                     .append(injection.getKey())
                     .append("' for ");
             emitHumanDescription(builder, requiredBindings);
-            builder.append(" was not found. If this extra is optional add '@Optional' annotation.\");\n")
+            builder.append(" was not found.\");\n")
                     .append("    }\n");
             emitFieldBindings(builder, injection);
         }
     }
 
-    private void emitFieldBindings(StringBuilder builder, ResourceInjection injection) {
+    void emitFieldBindings(StringBuilder builder, ResourceInjection injection) {
         Collection<FieldBinding> fieldBindings = injection.getFieldBindings();
         if (fieldBindings.isEmpty()) {
             return;

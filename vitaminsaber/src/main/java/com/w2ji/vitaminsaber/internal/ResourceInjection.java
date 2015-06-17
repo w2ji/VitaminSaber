@@ -29,4 +29,12 @@ final class ResourceInjection {
     public void addFieldBinding(FieldBinding fieldBinding) {
         fieldBindings.add(fieldBinding);
     }
+
+    public FieldBinding getFirstBinding(){
+        if (!fieldBindings.isEmpty()) {
+            return new ArrayList<FieldBinding>(fieldBindings).get(0);
+        } else {
+            return null;
+        }
+    }
 }

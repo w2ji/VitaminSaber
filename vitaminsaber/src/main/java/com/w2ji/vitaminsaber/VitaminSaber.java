@@ -3,7 +3,6 @@ package com.w2ji.vitaminsaber;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,17 +35,17 @@ public class VitaminSaber {
         inject(target, target, ResourceFinder.FRAGMENT);
     }
 
-    public static void inject(Context resource, Object target) {
-        inject(target, resource, ResourceFinder.CONTEXT);
+    public static void inject(Context context, Object target) {
+        inject(context, target, ResourceFinder.CONTEXT);
     }
 
-    static void inject(Object target, Object resource, ResourceFinder resourceFinder) {
+    static void inject(Object context, Object target, ResourceFinder resourceFinder) {
         Class<?> targetClass = target.getClass();
         try {
             if (debug) Log.d(TAG, "Looking up resource injector for " + targetClass.getName());
             Method inject = findInjectorForClass(targetClass);
             if (inject != null) {
-                inject.invoke(null, resourceFinder, target, resource);
+                inject.invoke(null, resourceFinder, target, context);
             }
         } catch (RuntimeException e) {
             throw e;
@@ -93,19 +92,19 @@ public class VitaminSaber {
      */
     public enum ResourceFinder {
         CONTEXT {
-            @Override public Object getResource(Object target, int resourceId) {
+            @Override public Object getResource(Object target, int resourceId, String variableType) {
                 Context activity = (Context) target ;
-                return activity == null ? null : findResourceType(activity.getResources(), resourceId);
+                return activity == null ? null : findResourceType(activity.getResources(), resourceId, variableType);
             }
         },
         FRAGMENT {
-            @Override public Object getResource(Object target, int resourceId) {
+            @Override public Object getResource(Object target, int resourceId, String variableType) {
                 Fragment fragment = (Fragment) target;
-                return fragment == null ? null : findResourceType(fragment.getResources(), resourceId);
+                return fragment == null ? null : findResourceType(fragment.getResources(), resourceId, variableType);
             }
         };
 
-        public Object findResourceType(Resources resources, int resourceId){
+        public Object findResourceType(Resources resources, int resourceId, String variableType){
             String resourceTypeName = resources.getResourceTypeName(resourceId);
             if (debug) Log.d(TAG, "resourceTypes : " + resourceTypeName);
             ResourceTypes resourceTypes = ResourceTypes.valueOf(resourceTypeName);
@@ -115,17 +114,11 @@ public class VitaminSaber {
                 case animator:
                     return resources.getAnimation(resourceId);
                 case array:
-                    // TODO hack for now and fix it in the next release
-                    try {
-                        String [] strings = resources.getStringArray(resourceId);
-                        if (strings[0] != null){
-                            return strings;
-                        }
-                        int [] ints = resources.getIntArray(resourceId);
-                        return ints;
-                    } catch (Exception ex){
+                    if (variableType.contains(String[].class.getSimpleName())){
+                        return resources.getStringArray(resourceId);
+                    } else if (variableType.contains(int[].class.getSimpleName())){
+                        return resources.getIntArray(resourceId);
                     }
-                    return resources.getIntArray(resourceId);
                 case attr:
                     // TODO not supported?
                     return null;
@@ -151,11 +144,13 @@ public class VitaminSaber {
                     // TODO not supported?
                     return null;
                 case mipmap:
+                    // TODO not supported?
                     return null;
                 case plurals:
                     // TODO not supported?
                     return null;
                 case raw:
+                    // TODO not supported?
                     return null;
                 case string:
                     return resources.getString(resourceId);
@@ -190,7 +185,7 @@ public class VitaminSaber {
             style,
             xml
         }
-        public abstract Object getResource(Object source, int resourceId);
+        public abstract Object getResource(Object source, int resourceId, String variableType);
     }
 
     public static class UnableToInjectException extends RuntimeException {

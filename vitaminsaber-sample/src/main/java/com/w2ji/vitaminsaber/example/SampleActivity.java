@@ -19,6 +19,7 @@
 package com.w2ji.vitaminsaber.example;
 
 import android.app.Activity;
+import android.content.res.XmlResourceParser;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -28,22 +29,43 @@ import butterknife.InjectView;
 import com.w2ji.vitaminsaber.InjectResource;
 import com.w2ji.vitaminsaber.VitaminSaber;
 
+import java.util.Arrays;
+
 public class SampleActivity extends Activity {
 
-    @InjectView(R.id.string) TextView testString;
-    @InjectView(R.id.image) ImageView imageView;
+    @InjectView(R.id.string)
+    TextView testString;
+    @InjectView(R.id.image)
+    ImageView imageView;
+    @InjectResource(R.string.string)
+    String string;
+    @InjectResource(R.dimen.dimen)
+    float dimen;
+    @InjectResource(R.integer.integer)
+    int integer;
+    @InjectResource(R.color.green)
+    int color;
+    @InjectResource(R.bool.bool)
+    boolean bool;
+    @InjectResource(R.drawable.example_drawable)
+    Drawable exampleDrawable;
+    @InjectResource(R.array.int_array)
+    int[] intArray;
+    @InjectResource(R.array.string_array)
+    String[] stringArray;
+    @InjectResource(R.anim.anim)
+    XmlResourceParser anim;
+    @InjectResource(R.animator.animator)
+    XmlResourceParser animator;
+    @InjectResource(R.layout.activity_main)
+    XmlResourceParser layout;
 
-    @InjectResource(R.string.app_name) String appName;
-    @InjectResource(R.dimen.spacing_tiny) float tinySpacing;
-    @InjectResource(R.integer.ten) int ten;
-    @InjectResource(R.color.green) int color;
-    @InjectResource(R.drawable.example_drawable) Drawable exampleDrawable;
-    @InjectResource(R.array.index) int[] arrays;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         ButterKnife.inject(this);
         VitaminSaber.inject(this);
         testString.setTextColor(color);
@@ -51,6 +73,28 @@ public class SampleActivity extends Activity {
 
         SampleUtil util = new SampleUtil(this);
 
-        testString.setText(appName + "\n" + tinySpacing + "\n" + ten + "\n" + util.appName);
+        StringBuffer outputString = new StringBuffer();
+        outputString.append(String.format("String value: %s\n", string));
+        outputString.append(String.format("Dimen value: %f\n", dimen));
+        outputString.append(String.format("Integer value: %d\n", integer));
+        outputString.append(String.format("Color value: %d\n", color));
+        outputString.append(String.format("Bool value: %s\n", bool));
+        outputString.append(String.format("Int array value: %s\n", Arrays.toString(intArray)));
+        outputString.append(String.format("String array value: %s\n", Arrays.toString(stringArray)));
+        outputString.append(String.format("String value in Object: %s\n", util.appName));
+
+        if (anim == null) {
+            throw new RuntimeException("Cannot inject anim");
+        }
+
+        if (animator == null) {
+            throw new RuntimeException("Cannot inject animator");
+        }
+
+        if (layout == null){
+            throw new RuntimeException("Cannot inject layout");
+        }
+
+        testString.setText(outputString.toString());
     }
 }
