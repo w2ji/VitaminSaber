@@ -1,4 +1,5 @@
 Vitamin Saber [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.w2ji.vitaminsaber/vitaminsaber/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.w2ji.vitaminsaber/vitaminsaber)
+============
 
 Vitamin Saber provides resource injection for Android (@InjectResource(resId)).
 It is annotation processor based and will provide all the speed you need on Android by avoiding reflection.
@@ -63,9 +64,10 @@ Supported Resource Types
 
 Gradle
 -----
-This project is uploaded to maven central
+Add the following lines to your gradle dependency
+
 ```
-compile "com.w2ji.vitaminsaber:vitaminsaber:1.0.1"
+compile "com.w2ji.vitaminsaber:vitaminsaber:1.0.2"
 ```
 -----
 
