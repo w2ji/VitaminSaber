@@ -1,4 +1,4 @@
-Vitamin Saber [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.w2ji.vitaminsaber/vitaminsaber/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.w2ji.vitaminsaber/vitaminsaber)
+Vitamin Saber [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.w2ji.vitaminsaber/vitaminsaber/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.w2ji.vitaminsaber/vitaminsaber) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Vitamin%20Saber-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2018)
 ============
 
 Vitamin Saber provides resource injection for Android (@InjectResource(resId)).
