@@ -8,23 +8,10 @@ The code was originally a fork of the
 Extra dependency library [Dart](https://github.com/f2prateek/dart).
 
 
-Dependencies
-------
-```java
-class ExampleActivity extends Activity {
-  @InjectResource(R.string.hello) String str1;
-  @InjectResource(R.color.red) int color;
-
-  @Override public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.simple_activity);
-    VitaminSaber.inject(this);
-  }
-}
-```
-
 Usages
 ------
+
+Injecting into activity or fragment:
 ```java
 class ExampleActivity extends Activity {
   @InjectResource(R.string.hello) String str1;
@@ -37,6 +24,18 @@ class ExampleActivity extends Activity {
   }
 }
 ```
+
+Injecting into object class:
+```java
+public class SampleObject {
+    @InjectResource (R.string.app_name) public String appName;
+
+    public SampleObject (Context context){
+        VitaminSaber.inject(context, this);
+    }
+}
+```
+
 
 Supported Resource Types
 -----
@@ -62,7 +61,7 @@ Supported Resource Types
     xml
 ```
 
-Gradle
+Gradle Dependency
 -----
 Add the following lines to your gradle dependency
 
